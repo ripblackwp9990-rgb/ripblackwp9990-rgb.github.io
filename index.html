@@ -114,11 +114,11 @@
   <h1>☠️ SCRIPTS DO LARRY ☠️</h1>
 
   <!-- Botões -->
-  <button class="red" onclick="generateParticles(event); copyToClipboard('loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ripblackwp9990-rgb/LarryHub2/main/LarryHub2.lua\"))()')">
+  <button class="red" onclick="generateParticles(event); copyToClipboard('loadstring(game:HttpGet(\\"https://raw.githubusercontent.com/ripblackwp9990-rgb/LarryHub2/main/LarryHub2.lua\\"))()')">
     ☠️ LARRY HUB ☠️
   </button>
 
-  <button class="red" onclick="generateParticles(event); copyToClipboard('loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ripblackwp9990-rgb/Aimbot/main/AimbotOn.lua\"))()')">
+  <button class="red" onclick="generateParticles(event); copyToClipboard('loadstring(game:HttpGet(\\"https://raw.githubusercontent.com/ripblackwp9990-rgb/Aimbot/main/AimbotOn.lua\\"))()')">
     ☠️ AIMBOT DO LARRY ☠️
   </button>
 
@@ -166,18 +166,16 @@
 
     // Função para copiar para a área de transferência
     function copyToClipboard(code) {
-      // Criação de um input invisível para copiar o texto
-      const input = document.createElement('input');
-      input.value = code;  // Copia o código loadstring
-      document.body.appendChild(input);
-      input.select();
+      const textarea = document.createElement('textarea');  // Criação de um campo de texto invisível
+      textarea.value = code;  // Atribuindo o código que será copiado
+      document.body.appendChild(textarea);  // Adicionando o campo de texto ao body
+      textarea.select();  // Selecionando o texto
       document.execCommand('copy');  // Comando para copiar
-      document.body.removeChild(input);
+      document.body.removeChild(textarea);  // Remover o campo de texto após copiar
 
-      alert('Código copiado para a área de transferência!');  // Alerta de sucesso
+      alert('Código copiado para a área de transferência!');  // Alerta indicando que foi copiado
     }
   </script>
 
 </body>
 </html>
- 
