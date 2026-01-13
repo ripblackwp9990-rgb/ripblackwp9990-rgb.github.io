@@ -114,11 +114,11 @@
   <h1>☠️ SCRIPTS DO LARRY ☠️</h1>
 
   <!-- Botões -->
-  <button class="red" onclick="generateParticles(event); executeScript('https://raw.githubusercontent.com/ripblackwp9990-rgb/LarryHub2/main/LarryHub2.lua')">
+  <button class="red" onclick="generateParticles(event); copyToClipboard('loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ripblackwp9990-rgb/LarryHub2/main/LarryHub2.lua\"))()')">
     ☠️ LARRY HUB ☠️
   </button>
 
-  <button class="red" onclick="generateParticles(event); executeScript('https://raw.githubusercontent.com/ripblackwp9990-rgb/Aimbot/main/AimbotOn.lua')">
+  <button class="red" onclick="generateParticles(event); copyToClipboard('loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ripblackwp9990-rgb/Aimbot/main/AimbotOn.lua\"))()')">
     ☠️ AIMBOT DO LARRY ☠️
   </button>
 
@@ -164,11 +164,15 @@
       }
     }
 
-    // Função para executar o script
-    function executeScript(url) {
-      const script = document.createElement('script');
-      script.src = url;
-      document.body.appendChild(script);
+    // Função que copia o código do loadstring para a área de transferência
+    function copyToClipboard(code) {
+      const textArea = document.createElement('textarea');
+      textArea.value = code;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      alert('Código copiado para a área de transferência!'); // Alerta para informar que foi copiado
     }
   </script>
 
