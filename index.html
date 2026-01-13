@@ -2,23 +2,154 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Meu site</title>
+  <title>Scripts do Larry</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0f0f0f;
+      background: black;
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
       height: 100vh;
+      text-align: center;
+      overflow: hidden;
     }
-    h1 { color: #00ff88; }
+
+    /* Animação do fundo */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,%3Csvg%20xmlns%3D"http%3A//www.w3.org/2000/svg"%20viewBox%3D"0%200%20500%20500"%3E%3Cpath%20d%3D"M0%2C0%20L500%2C0%20L500%20500%20L0%20500%20Z"%20stroke%3D"rgb%28255%2C%2025%2C%2025%29"%20stroke-width%3D"2"fill%3D"none"stroke-dasharray%3D"20%2C10"%20stroke-linecap%3D"round"%20stroke-linejoin%3D"round"%3E%3C/path%3E%3C/svg%3E') repeat;
+      animation: moveBackground 5s linear infinite;
+    }
+
+    @keyframes moveBackground {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 10px 10px;
+      }
+    }
+
+    h1 {
+      color: #ff4444;
+      font-size: 36px;
+      margin-top: 20px;
+    }
+
+    /* Estilo dos botões */
+    button {
+      margin: 15px;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;  /* Borda arredondada */
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Estilo do botão LARRY HUB e AIMBOT */
+    .red {
+      background: #ff4444;
+    }
+    .red:hover {
+      background: #cc3333;
+    }
+
+    /* Estilo do botão DISCORD */
+    .purple {
+      background: #9b59b6;
+    }
+    .purple:hover {
+      background: #8e44ad;
+    }
+
+    /* Partículas de animação */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: inherit;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>🔥 Site do ripblackwp9990-rgb 🔥</h1>
+
+  <h1>☠️ SCRIPTS DO LARRY ☠️</h1>
+
+  <!-- Botões -->
+  <button class="red" onclick="generateParticles(event); window.location.href='loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ripblackwp9990-rgb/LarryHub2/main/LarryHub2.lua\"))()'">
+    ☠️ LARRY HUB ☠️
+  </button>
+
+  <button class="red" onclick="generateParticles(event); window.location.href='loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ripblackwp9990-rgb/Aimbot/main/AimbotOn.lua\"))()'">
+    ☠️ AIMBOT DO LARRY ☠️
+  </button>
+
+  <button class="purple" onclick="generateParticles(event); window.open('https://discord.gg/DFG6jXjBX', '_blank')">
+    DISCORD
+  </button>
+
+  <script>
+    // Função que gera partículas
+    function generateParticles(event) {
+      const button = event.target;
+      const particleCount = 30; // Número de partículas
+      const rect = button.getBoundingClientRect();
+      const buttonCenter = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      };
+
+      // Gerar partículas
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 20 + 10; // Tamanho das partículas
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        // Posições iniciais das partículas (sai do centro do botão)
+        particle.style.left = `${buttonCenter.x - size / 2}px`;
+        particle.style.top = `${buttonCenter.y - size / 2}px`;
+
+        // Variar a posição das partículas de forma aleatória
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 50 + 20;
+        particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+
+        // Adicionar a partícula ao body
+        document.body.appendChild(particle);
+
+        // Remover a partícula após animação
+        setTimeout(() => {
+          particle.remove();
+        }, 1000);
+      }
+    }
+  </script>
+
 </body>
 </html>
- 
