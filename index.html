@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Scripts do Larry</title>
   <style>
     body {
@@ -16,9 +17,10 @@
       height: 100vh;
       text-align: center;
       overflow: hidden;
+      position: relative;
     }
 
-    /* Animação do fundo */
+    /* Animação do fundo com linhas vermelhas irregulares */
     body::before {
       content: '';
       position: absolute;
@@ -93,6 +95,18 @@
         opacity: 0;
       }
     }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+      button {
+        width: 80%;
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -100,11 +114,11 @@
   <h1>☠️ SCRIPTS DO LARRY ☠️</h1>
 
   <!-- Botões -->
-  <button class="red" onclick="generateParticles(event); window.location.href='loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ripblackwp9990-rgb/LarryHub2/main/LarryHub2.lua\"))()'">
+  <button class="red" onclick="generateParticles(event); executeScript('https://raw.githubusercontent.com/ripblackwp9990-rgb/LarryHub2/main/LarryHub2.lua')">
     ☠️ LARRY HUB ☠️
   </button>
 
-  <button class="red" onclick="generateParticles(event); window.location.href='loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ripblackwp9990-rgb/Aimbot/main/AimbotOn.lua\"))()'">
+  <button class="red" onclick="generateParticles(event); executeScript('https://raw.githubusercontent.com/ripblackwp9990-rgb/Aimbot/main/AimbotOn.lua')">
     ☠️ AIMBOT DO LARRY ☠️
   </button>
 
@@ -148,6 +162,13 @@
           particle.remove();
         }, 1000);
       }
+    }
+
+    // Função para executar o script
+    function executeScript(url) {
+      const script = document.createElement('script');
+      script.src = url;
+      document.body.appendChild(script);
     }
   </script>
 
