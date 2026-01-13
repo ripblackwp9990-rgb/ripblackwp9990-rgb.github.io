@@ -127,7 +127,7 @@
   </button>
 
   <script>
-    // Função que gera partículas
+    // Função que gera partículas ao redor do botão
     function generateParticles(event) {
       const button = event.target;
       const particleCount = 30; // Número de partículas
@@ -137,7 +137,7 @@
         y: rect.top + rect.height / 2
       };
 
-      // Gerar partículas
+      // Gerar partículas ao redor do botão
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('particle');
@@ -145,14 +145,11 @@
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
 
-        // Posições iniciais das partículas (sai do centro do botão)
-        particle.style.left = `${buttonCenter.x - size / 2}px`;
-        particle.style.top = `${buttonCenter.y - size / 2}px`;
-
-        // Variar a posição das partículas de forma aleatória
+        // Partículas ao redor do botão (com um deslocamento aleatório)
         const angle = Math.random() * Math.PI * 2;
-        const distance = Math.random() * 50 + 20;
-        particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+        const distance = Math.random() * 40 + 30; // Aumentando a distância das partículas
+        particle.style.left = `${buttonCenter.x - size / 2 + Math.cos(angle) * distance}px`;
+        particle.style.top = `${buttonCenter.y - size / 2 + Math.sin(angle) * distance}px`;
 
         // Adicionar a partícula ao body
         document.body.appendChild(particle);
@@ -164,16 +161,25 @@
       }
     }
 
-    // Função para copiar para a área de transferência
+    // Função para copiar o texto para a área de transferência (desktop e mobile)
     function copyToClipboard(code) {
-      const textarea = document.createElement('textarea');  // Criação de um campo de texto invisível
-      textarea.value = code;  // Atribuindo o código que será copiado
-      document.body.appendChild(textarea);  // Adicionando o campo de texto ao body
-      textarea.select();  // Selecionando o texto
-      document.execCommand('copy');  // Comando para copiar
-      document.body.removeChild(textarea);  // Remover o campo de texto após copiar
-
-      alert('Código copiado para a área de transferência!');  // Alerta indicando que foi copiado
+      // Verificando se o navegador tem suporte para o método moderno
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(code).then(() => {
+          alert('Código copiado para a área de transferência!');
+        }).catch(err => {
+          alert('Erro ao copiar para a área de transferência!');
+        });
+      } else {
+        // Método antigo para navegadores que não suportam clipboard moderno
+        const textarea = document.createElement('textarea');
+        textarea.value = code;  // Copia o código loadstring
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');  // Comando para copiar
+        document.body.removeChild(textarea);
+        alert('Código copiado para a área de transferência!');
+      }
     }
   </script>
 
